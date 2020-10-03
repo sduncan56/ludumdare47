@@ -1,0 +1,91 @@
+{
+  "name": "map",
+  "ogmoVersion": "3.3.0",
+  "levelPaths": ["."],
+  "backgroundColor": "#282c34ff",
+  "gridColor": "#3c4049cc",
+  "anglesRadians": true,
+  "directoryDepth": 5,
+  "layerGridDefaultSize": {"x": 16, "y": 16},
+  "levelDefaultSize": {"x": 320, "y": 240},
+  "levelMinSize": {"x": 512, "y": 448},
+  "levelMaxSize": {"x": 4096, "y": 4096},
+  "levelValues": [],
+  "defaultExportMode": ".json",
+  "compactExport": false,
+  "externalScript": "",
+  "playCommand": "",
+  "entityTags": [],
+  "layers": [
+    {
+      "definition": "entity",
+      "name": "entities",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "69147069",
+      "requiredTags": [],
+      "excludedTags": []
+    },
+    {
+      "definition": "tile",
+      "name": "base",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "69107379",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "tiles"
+    },
+    {
+      "definition": "tile",
+      "name": "collisions",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "69339724",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "collisions"
+    }
+  ],
+  "entities": [
+    {
+      "exportID": "69133557",
+      "name": "player",
+      "limit": -1,
+      "size": {"x": 16, "y": 24},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 24},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../../art/player/player.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAYAAADzoH0MAAAAAXNSR0IArs4c6QAAAJNJREFUOI29U9sNwCAIpKZ7dDB3cBh36GBOYr9MEA/BkPT+itwdrxIFcWkPubQuY299lnwogMiaSDohI0xqFhm1sFRwCrcAcicCQ/RO34R3mLCFk02EW3Cv0Ryit2x4iZwsE+S3NEq7ZB7nb1zktsiWQfKSNfz3L2gIH5JagXcuk4B0HyK7I4MVRLZCubQuHVFs4APlEVAl7lhnGwAAAABJRU5ErkJggg=="
+    }
+  ],
+  "tilesets": [
+    {"label": "tiles", "path": "tilesets/tiles.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAATdJREFUeJzt2DFqAkEUxvHPEIhgISHYipW1uUJI7z3S2OUQdmlyjxRpU+UA1lZiK8tiIbiVKYYnyy6C+MY8Qv6/Zsdxd+e9z1FkO3J6+ZocbDzodbXZ7Y9Hm5N0fN00+vCt/7l4dl1/41s+sSbNcr3VoNdtzUtSWVQn34tw671BWVSSUgjL9VbjYV9S+xO3XTEe9rXZ7VUWle4f7rzLu7kDsCas+XrjFk5zLKl1bpRsO0BKIZx7vh1Hit0F7gAev+O3sUeWH8G/jACiC4hGANEFRCOA6AKiEUB0AdH+fQDuv8KRXt8WHWnhuoc7gNXU/1AjNSLNZ5ODjc18lh64NOdzyfIVWE0vv7be2Kkmr9W8lCGA96dU3CUhXLOxc2UroP5s0Fg4AAAAAAAAAAAAAAAAAAAAAH7dD235X34Ya8bgAAAAAElFTkSuQmCC", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0},
+    {"label": "collisions", "path": "tilesets/collisions.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAJdJREFUeJzt17EJAkEURVFHMLUcSxBza7EJ67AJW7ADYaswNdAiRrmg5+SfvTwm2bGadD7sXzP39+N16vvL5TR1v566/gEGqANqBqgDagaoA2oGqANqBqgDagaoA2oGqANq4/nYTf3Pb7a38amYwt+/AAPUATUD1AE1A9QBNQPUATUD1AE1A9QBNQPUAQAAAAAAAAAA3/YGW8QKMLOdHK4AAAAASUVORK5CYII=", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0}
+  ]
+}
