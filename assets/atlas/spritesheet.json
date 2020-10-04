@@ -1,9 +1,33 @@
 {
   "frames": {
-    "player/player.png": {
+    "loopwall.png": {
       "frame": {
         "x": 0,
         "y": 0,
+        "w": 32,
+        "h": 448
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 448
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 448
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "player/player.png": {
+      "frame": {
+        "x": 0,
+        "y": 448,
         "w": 13,
         "h": 23
       },
@@ -31,8 +55,8 @@
     "image": "spritesheet.png",
     "format": "RGBA8888",
     "size": {
-      "w": 13,
-      "h": 23
+      "w": 32,
+      "h": 471
     },
     "scale": 1
   }

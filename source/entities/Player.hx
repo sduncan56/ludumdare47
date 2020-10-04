@@ -15,7 +15,10 @@ class Player extends Entity
     var speed(default,null):Float = 100;
 
     public function new(x:Float, y:Float, flipped:Bool) {
-        super(x, y, flipped);
+        super(x, y, flipped, "player/player.png");
+
+
+
     }
 
     private function move(elapsed:Float)
@@ -24,10 +27,11 @@ class Player extends Entity
             velocity.x = 0;
                 
     
-        if (!falling && !FlxG.mouse.pressed) {
-            if (FlxG.keys.anyPressed([UP, W]) && isTouching(FlxObject.FLOOR)) {
+        if (!falling) {
+            if (FlxG.keys.anyPressed([UP, W]) && isTouching(FlxObject.FLOOR)){
                 velocity.y = -300;
                 jumping = true;
+                
             }
             if (FlxG.keys.anyPressed([DOWN, S])) {}
         
@@ -37,6 +41,7 @@ class Player extends Entity
         
             if (FlxG.keys.anyPressed([RIGHT, D])) {
                 velocity.x = speed;
+                
             }
         } else {
             acceleration.y = 1000;
