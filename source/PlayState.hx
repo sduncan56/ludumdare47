@@ -16,6 +16,7 @@ import flixel.FlxState;
 import entities.Player;
 import entities.LoopController;
 import entities.Portal;
+import entities.Entity;
 
 class PlayState extends FlxState
 {
@@ -31,6 +32,8 @@ class PlayState extends FlxState
 	var levels:List<Level> = new List<Level>();
 
 	var curLevel:Level;
+
+	var shiftEntitiesList:List<Entity> = new List<Entity>();
 
 
 	override public function create():Void
@@ -48,7 +51,7 @@ class PlayState extends FlxState
 		//  FlxG.debugger.drawDebug = true;
 
 		
-		bgColor = FlxColor.PURPLE;
+		bgColor = FlxColor.CYAN;
 
 	}
 
@@ -75,6 +78,7 @@ class PlayState extends FlxState
 			//curLevel.walls.follow();
 	
 			var base:FlxTilemap = ogmoData.loadTilemap(AssetPaths.tiles__png, "base");
+			curLevel.base = base;
 			add(base);
 
 			curLevel.loopsRequired = ogmoData.getLevelValue("LoopsRequired");
@@ -93,10 +97,27 @@ class PlayState extends FlxState
 			
 
 			levels.add(curLevel);
-	
+
+			createMapDuplicate();
 	
 	
 		}
+
+	private function createMapDuplicate()
+	{
+		var loopedBase:FlxTilemap = curLevel.ogmoData.loadTilemap(AssetPaths.tiles__png, "base");
+		var loopedWalls:FlxTilemap = loadCollisionMap(curLevel.ogmoData);
+		loopedBase.x = curLevel.width+1;
+		loopedWalls.x = curLevel.width+1;
+		
+		insert(0,loopedBase);
+		insert(0, loopedWalls);
+
+		curLevel.loopedBase = loopedBase;
+		curLevel.loopedWalls = loopedWalls;
+
+		curLevel.loopReady = true;
+	}
 
 	private function placeEntities(entity:EntityData)
 	{
@@ -118,6 +139,8 @@ class PlayState extends FlxState
 				portal.goToLevelNo = entity.values.gotolvlno;
 				add(portal);
 				portals.add(portal);
+				if (portal.x < curLevel.width)
+					shiftEntitiesList.push(portal);
 
 			default:
 		}
@@ -150,28 +173,26 @@ class PlayState extends FlxState
 
 		FlxG.overlap(player, portals, enteredPortal);
 
-		if (curLevel.loopReady)
+
+		var cam = FlxG.camera;
+
+		//shift entities forward if they need to be seen in the looped section
+		for (entity in shiftEntitiesList)
 		{
-			if (FlxG.camera.scroll.x > curLevel.width-1)
+			if (entity.x < FlxG.camera.scroll.x)
 			{
-				player.x -= curLevel.width;
+				entity.x += curLevel.width;
 			}
 		}
 
-		if (FlxG.camera.x+FlxG.camera.width + 1 > curLevel.width && !curLevel.loopReady)
+		//shift entities back after the loop
+		if (FlxG.camera.scroll.x > curLevel.width-1)
 		{
-			var loopedBase:FlxTilemap = curLevel.ogmoData.loadTilemap(AssetPaths.tiles__png, "base");
-			var loopedWalls:FlxTilemap = loadCollisionMap(curLevel.ogmoData);
-			loopedBase.x = curLevel.width+1;
-			loopedWalls.x = curLevel.width+1;
-			
-			insert(0,loopedBase);
-			insert(0, loopedWalls);
-
-			curLevel.loopedBase = loopedBase;
-			curLevel.loopedWalls = loopedWalls;
-
-			curLevel.loopReady = true;
+			player.x -= curLevel.width;
+			for (entity in shiftEntitiesList)
+			{
+				entity.x -= curLevel.width;
+			}
 		}
 
 	}
@@ -185,6 +206,15 @@ class PlayState extends FlxState
 			remove(p);
 		}
 		portals.clear();
+
+		curLevel.base.kill();
+		remove(curLevel.base);
+		curLevel.walls.kill();
+		remove(curLevel.walls);
+		curLevel.loopedBase.kill();
+		remove(curLevel.loopedBase);
+		curLevel.loopedWalls.kill();
+		remove(curLevel.loopedWalls);
 
 		loadLevel(AssetPaths.map__ogmo, "assets/map/level"+portal.goToLevelNo+".json");
 
