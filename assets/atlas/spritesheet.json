@@ -24,10 +24,34 @@
         "y": 0.5
       }
     },
-    "player/player.png": {
+    "vertbreakpt.png": {
       "frame": {
         "x": 0,
         "y": 448,
+        "w": 5,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 5,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 5,
+        "h": 24
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "player/player.png": {
+      "frame": {
+        "x": 0,
+        "y": 472,
         "w": 13,
         "h": 23
       },
@@ -56,7 +80,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 32,
-      "h": 471
+      "h": 495
     },
     "scale": 1
   }

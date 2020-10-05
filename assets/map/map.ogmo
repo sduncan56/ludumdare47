@@ -30,21 +30,21 @@
     },
     {
       "definition": "tile",
-      "name": "collisions",
-      "gridSize": {"x": 16, "y": 16},
-      "exportID": "69339724",
-      "exportMode": 0,
-      "arrayMode": 0,
-      "defaultTileset": "collisions"
-    },
-    {
-      "definition": "tile",
       "name": "base",
       "gridSize": {"x": 16, "y": 16},
       "exportID": "69107379",
       "exportMode": 0,
       "arrayMode": 0,
       "defaultTileset": "tiles"
+    },
+    {
+      "definition": "tile",
+      "name": "collisions",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "69339724",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "collisions"
     }
   ],
   "entities": [
@@ -126,6 +126,44 @@
       ],
       "texture": "../../art/loopwall.png",
       "textureImage": "data:image/png;base64,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"
+    },
+    {
+      "exportID": "86247204",
+      "name": "LeftVertPortal",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../../art/vertbreakpt.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAYCAYAAAAyJzegAAAAAXNSR0IArs4c6QAAABdJREFUGJVjvF696z8DGmBCFxgVHG6CACdDAzuRVfZHAAAAAElFTkSuQmCC"
     }
   ],
   "tilesets": [

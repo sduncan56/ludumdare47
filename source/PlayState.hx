@@ -15,6 +15,7 @@ import flixel.FlxState;
 
 import entities.Player;
 import entities.LoopController;
+import entities.Portal;
 
 class PlayState extends FlxState
 {
@@ -100,7 +101,7 @@ class PlayState extends FlxState
 			case "player":
 				player = new Player(entity.x, entity.y, false);
 				add(player);
-				camera.follow(player, FlxCameraFollowStyle.PLATFORMER, 1);
+				camera.follow(player, FlxCameraFollowStyle.LOCKON, 1);
 			
 		        curLevel.startPos = new FlxPoint(entity.x, entity.y);	
 			case "loopwall":
@@ -108,6 +109,10 @@ class PlayState extends FlxState
 				add(loopController);
 				loopControllers.add(loopController);
 				loopController.moves = false;
+			case "LeftVertPortal":
+				var portal = new Portal(entity.x, entity.y, false, "vertbreakpt.png");
+				add(portal);
+
 			default:
 		}
 	}
@@ -138,6 +143,14 @@ class PlayState extends FlxState
 		}
 
 		var cam = FlxG.camera;
+		if (curLevel.loopReady)
+		{
+			if (FlxG.camera.scroll.x > curLevel.width-1)
+			{
+				player.x -= curLevel.width;
+			}
+		}
+
 		if (FlxG.camera.x+FlxG.camera.width + 1 > curLevel.width && !curLevel.loopReady)
 		{
 			var loopedBase:FlxTilemap = curLevel.ogmoData.loadTilemap(AssetPaths.tiles__png, "base");
@@ -153,6 +166,8 @@ class PlayState extends FlxState
 
 			curLevel.loopReady = true;
 		}
+
+
 
 
 	}
