@@ -12,7 +12,7 @@ class Player extends Entity
     public var falling(default, default):Bool = false;
     public var jumping(default, default):Bool = false;
 
-    var speed(default,null):Float = 100;
+    var speed(default,null):Float = 200;
 
     public function new(x:Float, y:Float, flipped:Bool) {
         super(x, y, flipped, "player/player.png");

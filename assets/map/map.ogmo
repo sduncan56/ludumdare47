@@ -129,7 +129,7 @@
     },
     {
       "exportID": "86247204",
-      "name": "LeftVertPortal",
+      "name": "vertportal",
       "limit": -1,
       "size": {"x": 16, "y": 16},
       "origin": {"x": 0, "y": 0},
@@ -161,7 +161,9 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": [],
+      "values": [
+        {"name": "gotolvlno", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100}
+      ],
       "texture": "../../art/vertbreakpt.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAYCAYAAAAyJzegAAAAAXNSR0IArs4c6QAAABdJREFUGJVjvF696z8DGmBCFxgVHG6CACdDAzuRVfZHAAAAAElFTkSuQmCC"
     }

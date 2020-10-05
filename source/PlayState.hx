@@ -25,6 +25,8 @@ class PlayState extends FlxState
 
 	var player:Player;
 	var loopControllers:FlxGroup = new FlxGroup();
+	var portals:FlxGroup = new FlxGroup();
+
 
 	var levels:List<Level> = new List<Level>();
 
@@ -36,6 +38,7 @@ class PlayState extends FlxState
 		super.create();
 
 		SpritesheetTexture = FlxAtlasFrames.fromTexturePackerJson(AssetPaths.spritesheet__png, AssetPaths.spritesheet__json);
+
 
 		loadLevel(AssetPaths.map__ogmo, AssetPaths.level1__json);
 
@@ -61,20 +64,21 @@ class PlayState extends FlxState
 
 	private function loadLevel(ogmoFile:String, levelFile:String)
 		{
-            curLevel = new Level();
 
-			var map = new FlxOgmo3Loader(ogmoFile, levelFile);
+			var ogmoData = new FlxOgmo3Loader(ogmoFile, levelFile);
+
+            curLevel = new Level();
 	
-			curLevel.walls = loadCollisionMap(map);
+			curLevel.walls = loadCollisionMap(ogmoData);
 			add(curLevel.walls);
 	
 			//curLevel.walls.follow();
 	
-			var base:FlxTilemap = map.loadTilemap(AssetPaths.tiles__png, "base");
+			var base:FlxTilemap = ogmoData.loadTilemap(AssetPaths.tiles__png, "base");
 			add(base);
 
-			curLevel.loopsRequired = map.getLevelValue("LoopsRequired");
-			curLevel.levelNumber = map.getLevelValue("LevelNumber"); 
+			curLevel.loopsRequired = ogmoData.getLevelValue("LoopsRequired");
+			curLevel.levelNumber = ogmoData.getLevelValue("LevelNumber"); 
 
 			curLevel.height = base.height;
 			curLevel.width = base.width;
@@ -84,8 +88,8 @@ class PlayState extends FlxState
 
 
 
-			curLevel.ogmoData = map;
-			map.loadEntities(placeEntities, "entities");
+			curLevel.ogmoData = ogmoData;
+			ogmoData.loadEntities(placeEntities, "entities");
 			
 
 			levels.add(curLevel);
@@ -109,9 +113,11 @@ class PlayState extends FlxState
 				add(loopController);
 				loopControllers.add(loopController);
 				loopController.moves = false;
-			case "LeftVertPortal":
+			case "vertportal":
 				var portal = new Portal(entity.x, entity.y, false, "vertbreakpt.png");
+				portal.goToLevelNo = entity.values.gotolvlno;
 				add(portal);
+				portals.add(portal);
 
 			default:
 		}
@@ -142,7 +148,8 @@ class PlayState extends FlxState
 
 		}
 
-		var cam = FlxG.camera;
+		FlxG.overlap(player, portals, enteredPortal);
+
 		if (curLevel.loopReady)
 		{
 			if (FlxG.camera.scroll.x > curLevel.width-1)
@@ -167,30 +174,21 @@ class PlayState extends FlxState
 			curLevel.loopReady = true;
 		}
 
-
-
-
 	}
 
-	private function loop(player:Player, loopController:LoopController)
+	private function enteredPortal(player:Player, portal:Portal)
 	{
-		curLevel.loopsCompleted++;
-		if (curLevel.loopsCompleted > curLevel.loopsRequired)
+		player.kill();
+		remove(player);
+		for (p in portals)
 		{
-			remove(curLevel.walls);
-			remove(curLevel.base);
-			remove(player);
-			remove(loopController);
-			loadLevel(AssetPaths.map__ogmo, "assets/map/level"+curLevel.levelNumber+1+".json");
-			
+			remove(p);
 		}
-		FlxTween.tween(player, {x:curLevel.startPos.x, y:curLevel.startPos.y}, 1, {onComplete: loopedToStart});
-	}
+		portals.clear();
 
-	private function loopedToStart(tween:FlxTween)
-	{
-
+		loadLevel(AssetPaths.map__ogmo, "assets/map/level"+portal.goToLevelNo+".json");
 
 	}
+
 
 }
