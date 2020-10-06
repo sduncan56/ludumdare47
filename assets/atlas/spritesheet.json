@@ -24,10 +24,34 @@
         "y": 0.5
       }
     },
-    "vertbreakpt.png": {
+    "barrier.png": {
       "frame": {
         "x": 0,
         "y": 448,
+        "w": 3,
+        "h": 448
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 3,
+        "h": 448
+      },
+      "sourceSize": {
+        "w": 3,
+        "h": 448
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "vertbreakpt.png": {
+      "frame": {
+        "x": 0,
+        "y": 896,
         "w": 5,
         "h": 24
       },
@@ -50,8 +74,8 @@
     },
     "player/player.png": {
       "frame": {
-        "x": 0,
-        "y": 472,
+        "x": 3,
+        "y": 448,
         "w": 13,
         "h": 23
       },
@@ -80,7 +104,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 32,
-      "h": 495
+      "h": 920
     },
     "scale": 1
   }

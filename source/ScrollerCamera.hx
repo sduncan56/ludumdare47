@@ -1,3 +1,4 @@
+import entities.Entity;
 import flixel.math.FlxVelocity;
 import flixel.math.FlxPoint;
 import flixel.FlxCamera;
@@ -7,6 +8,7 @@ class ScrollerCamera extends FlxCamera
 {
 
     public var velocity(default, default):FlxPoint = new FlxPoint();
+    public var deathWall(null, default):Entity;
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
@@ -16,6 +18,14 @@ class ScrollerCamera extends FlxCamera
 		var delta = velocity.x * elapsed;
 		velocity.x += velocityDelta;
 		scroll.x += delta;
+
+
+    }
+
+    override function updateScroll() {
+        super.updateScroll();
+
+        deathWall.x = scroll.x;
 
 
     }

@@ -16,7 +16,7 @@
       "gridCellsX": 130,
       "gridCellsY": 56,
       "entities": [
-        {"name": "player", "id": 0, "_eid": "69133557", "x": 32, "y": 328, "originX": 0, "originY": 0},
+        {"name": "player", "id": 0, "_eid": "69133557", "x": 120, "y": 328, "originX": 0, "originY": 0},
         {
           "name": "loopwall",
           "id": 1,

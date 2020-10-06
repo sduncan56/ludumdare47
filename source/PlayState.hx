@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxPoint;
 import flixel.system.debug.DebuggerUtil;
@@ -37,6 +38,8 @@ class PlayState extends FlxState
 
 	var gameCamera:ScrollerCamera;
 
+	var deathWall:Entity;
+
 
 	override public function create():Void
 	{
@@ -49,8 +52,14 @@ class PlayState extends FlxState
 
 		SpritesheetTexture = FlxAtlasFrames.fromTexturePackerJson(AssetPaths.spritesheet__png, AssetPaths.spritesheet__json);
 
+		deathWall = new Entity(0, 0, false, "barrier.png");
+		add(deathWall);
+		gameCamera.deathWall = deathWall;
+		//shiftEntitiesList.push(deathWall);
 
 		loadLevel(AssetPaths.map__ogmo, AssetPaths.level1__json);
+
+
 
 
 
@@ -108,6 +117,11 @@ class PlayState extends FlxState
 			levels.add(curLevel);
 
 			createMapDuplicate();
+
+			// if (curLevel.levelNumber == 1)
+			// 	deathWall.kill();
+			// else
+			// 	deathWall.revive();
 	
 	
 		}
@@ -181,9 +195,12 @@ class PlayState extends FlxState
 		}
 
 		FlxG.overlap(player, portals, enteredPortal);
+		FlxG.overlap(player, deathWall, hitDeathWall);
 
 
-        gameCamera.velocity.x = curLevel.scrollSpeed;
+		gameCamera.velocity.x = curLevel.scrollSpeed;
+		//deathWall.velocity.x = curLevel.scrollSpeed;
+		//deathWall.x = gameCamera.scroll.x;
 
 		FlxG.camera.setScrollBounds(FlxG.camera.scroll.x, curLevel.width*2, 0, curLevel.height);
 
@@ -204,13 +221,14 @@ class PlayState extends FlxState
 			{
 				entity.x -= curLevel.width;
 			}
+			deathWall.x -= curLevel.width;
 			FlxG.camera.setScrollBounds(0, curLevel.width*2, 0, curLevel.height);
 
 		}
 
 	}
 
-	private function enteredPortal(player:Player, portal:Portal)
+	public function cleanLevel()
 	{
 		player.kill();
 		remove(player);
@@ -229,7 +247,29 @@ class PlayState extends FlxState
 		curLevel.loopedWalls.kill();
 		remove(curLevel.loopedWalls);
 
+		gameCamera.scroll.x = 0;
+		deathWall.x = 0;
+	}
+
+	private function enteredPortal(player:Player, portal:Portal)
+	{
+		cleanLevel();
+
 		loadLevel(AssetPaths.map__ogmo, "assets/map/level"+portal.goToLevelNo+".json");
+
+	}
+
+	private function hitDeathWall(player:Player, wall:Entity)
+	{
+		cleanLevel();
+
+		if (curLevel.levelNumber == 1)
+		{
+			FlxG.switchState(new GameOverState());
+		} else {
+			loadLevel(AssetPaths.map__ogmo, "assets/map/level"+(curLevel.levelNumber-1)+".json");
+		}
+
 
 	}
 

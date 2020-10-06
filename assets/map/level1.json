@@ -16,7 +16,7 @@
       "gridCellsX": 64,
       "gridCellsY": 56,
       "entities": [
-        {"name": "player", "id": 0, "_eid": "69133557", "x": 56, "y": 328, "originX": 0, "originY": 0},
+        {"name": "player", "id": 0, "_eid": "69133557", "x": 104, "y": 328, "originX": 0, "originY": 0},
         {
           "name": "vertportal",
           "id": 1,
