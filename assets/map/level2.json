@@ -4,7 +4,7 @@
   "height": 448,
   "offsetX": 0,
   "offsetY": 0,
-  "values": {"LoopsRequired": 3, "LevelNumber": 2},
+  "values": {"LoopsRequired": 3, "LevelNumber": 2, "ScrollSpeed": 50},
   "layers": [
     {
       "name": "entities",

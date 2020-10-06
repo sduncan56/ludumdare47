@@ -35,10 +35,17 @@ class PlayState extends FlxState
 
 	var shiftEntitiesList:List<Entity> = new List<Entity>();
 
+	var gameCamera:ScrollerCamera;
+
 
 	override public function create():Void
 	{
 		super.create();
+
+		gameCamera = new ScrollerCamera();
+		FlxG.cameras.remove(FlxG.camera);
+		FlxG.cameras.add(gameCamera);
+		FlxG.camera = gameCamera;
 
 		SpritesheetTexture = FlxAtlasFrames.fromTexturePackerJson(AssetPaths.spritesheet__png, AssetPaths.spritesheet__json);
 
@@ -83,6 +90,8 @@ class PlayState extends FlxState
 
 			curLevel.loopsRequired = ogmoData.getLevelValue("LoopsRequired");
 			curLevel.levelNumber = ogmoData.getLevelValue("LevelNumber"); 
+
+			curLevel.scrollSpeed = ogmoData.getLevelValue("ScrollSpeed");
 
 			curLevel.height = base.height;
 			curLevel.width = base.width;
@@ -174,7 +183,9 @@ class PlayState extends FlxState
 		FlxG.overlap(player, portals, enteredPortal);
 
 
-		var cam = FlxG.camera;
+        gameCamera.velocity.x = curLevel.scrollSpeed;
+
+		FlxG.camera.setScrollBounds(FlxG.camera.scroll.x, curLevel.width*2, 0, curLevel.height);
 
 		//shift entities forward if they need to be seen in the looped section
 		for (entity in shiftEntitiesList)
@@ -193,6 +204,8 @@ class PlayState extends FlxState
 			{
 				entity.x -= curLevel.width;
 			}
+			FlxG.camera.setScrollBounds(0, curLevel.width*2, 0, curLevel.height);
+
 		}
 
 	}

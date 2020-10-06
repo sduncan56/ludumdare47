@@ -11,6 +11,7 @@ class Level
     public var loopsCompleted(default, default):Int = 0;
     public var loopsRequired(default, default):Int;
     public var levelNumber(default, default):Int;
+    public var scrollSpeed(default, default):Float;
 
     public var walls(default, default):FlxTilemap;
     public var base(default, default):FlxTilemap;

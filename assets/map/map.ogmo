@@ -12,7 +12,8 @@
   "levelMaxSize": {"x": 4096, "y": 4096},
   "levelValues": [
     {"name": "LoopsRequired", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100},
-    {"name": "LevelNumber", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100}
+    {"name": "LevelNumber", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100},
+    {"name": "ScrollSpeed", "definition": "Float", "defaults": 0, "bounded": false, "min": 0, "max": 100}
   ],
   "defaultExportMode": ".json",
   "compactExport": false,
