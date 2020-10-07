@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "version": "0.6.5"
+  },
+  "savePath": "/home/shane/Documents/dev/ld47/assets/atlas",
+  "images": [
+    {
+      "name": "barrier.png",
+      "path": "/home/shane/Documents/dev/ld47/art/barrier.png",
+      "folder": ""
+    },
+    {
+      "name": "loopwall.png",
+      "path": "/home/shane/Documents/dev/ld47/art/loopwall.png",
+      "folder": ""
+    },
+    {
+      "name": "vertbreakpt.png",
+      "path": "/home/shane/Documents/dev/ld47/art/vertbreakpt.png",
+      "folder": ""
+    }
+  ],
+  "folders": [
+    "/home/shane/Documents/dev/ld47/art/player"
+  ],
+  "packOptions": {
+    "textureName": "spritesheet",
+    "textureFormat": "png",
+    "removeFileExtension": false,
+    "prependFolderName": true,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "disableSmoothing": false,
+    "filter": "none",
+    "exporter": "JSON (hash)",
+    "fileName": "pack-result",
+    "savePath": "/home/shane/Documents/dev/ld47/assets/atlas",
+    "width": 2048,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 0,
+    "extrude": 0,
+    "allowRotation": true,
+    "allowTrim": true,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": true,
+    "packer": "MaxRectsBin",
+    "packerMethod": "BestShortSideFit"
+  }
+}

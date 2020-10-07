@@ -55,13 +55,8 @@ class PlayState extends FlxState
 		deathWall = new Entity(0, 0, false, "barrier.png");
 		add(deathWall);
 		gameCamera.deathWall = deathWall;
-		//shiftEntitiesList.push(deathWall);
 
 		loadLevel(AssetPaths.map__ogmo, AssetPaths.level1__json);
-
-
-
-
 
 		//  FlxG.debugger.visible = true;
 		//  FlxG.debugger.drawDebug = true;
@@ -92,10 +87,30 @@ class PlayState extends FlxState
 			add(curLevel.walls);
 	
 			//curLevel.walls.follow();
+
+			var bg4:FlxTilemap = ogmoData.loadTilemap(AssetPaths.tiles__png, "bg4");
+			bg4.scrollFactor.set(0,1);
+			curLevel.bgLayers.add(bg4);
+
+			var bg3:FlxTilemap = ogmoData.loadTilemap(AssetPaths.tiles__png, "bg3");
+			bg3.scrollFactor.set(0, 1);
+			curLevel.bgLayers.add(bg3);
+
+			var bg2:FlxTilemap = ogmoData.loadTilemap(AssetPaths.tiles__png, "bg2");
+
+
+			var bg1:FlxTilemap = ogmoData.loadTilemap(AssetPaths.tiles__png, "bg1");
+			bg1.scrollFactor.set(0.9,1);
+			curLevel.bgLayers.add(bg1);
+
+
+
 	
 			var base:FlxTilemap = ogmoData.loadTilemap(AssetPaths.tiles__png, "base");
 			curLevel.base = base;
 			add(base);
+
+
 
 			curLevel.loopsRequired = ogmoData.getLevelValue("LoopsRequired");
 			curLevel.levelNumber = ogmoData.getLevelValue("LevelNumber"); 
@@ -108,8 +123,6 @@ class PlayState extends FlxState
 			FlxG.worldBounds.width = curLevel.width*2;
 			FlxG.camera.setScrollBounds(0, curLevel.width*2, 0, curLevel.height);
 
-
-
 			curLevel.ogmoData = ogmoData;
 			ogmoData.loadEntities(placeEntities, "entities");
 			
@@ -118,13 +131,13 @@ class PlayState extends FlxState
 
 			createMapDuplicate();
 
-			// if (curLevel.levelNumber == 1)
-			// 	deathWall.kill();
-			// else
-			// 	deathWall.revive();
-	
-	
+			insert(0, curLevel.bgLayers);
+
+
+
+
 		}
+
 
 	private function createMapDuplicate()
 	{
@@ -197,10 +210,8 @@ class PlayState extends FlxState
 		FlxG.overlap(player, portals, enteredPortal);
 		FlxG.overlap(player, deathWall, hitDeathWall);
 
-
 		gameCamera.velocity.x = curLevel.scrollSpeed;
-		//deathWall.velocity.x = curLevel.scrollSpeed;
-		//deathWall.x = gameCamera.scroll.x;
+
 
 		FlxG.camera.setScrollBounds(FlxG.camera.scroll.x, curLevel.width*2, 0, curLevel.height);
 
@@ -246,6 +257,9 @@ class PlayState extends FlxState
 		remove(curLevel.loopedBase);
 		curLevel.loopedWalls.kill();
 		remove(curLevel.loopedWalls);
+
+		curLevel.bgLayers.kill();
+		remove(curLevel.bgLayers);
 
 		gameCamera.scroll.x = 0;
 		deathWall.x = 0;
