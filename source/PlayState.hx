@@ -70,8 +70,8 @@ class PlayState extends FlxState
 	{
 		var colMap:FlxTilemap = ogmoData.loadTilemap(AssetPaths.collisions__png, "collisions");
 		colMap.visible = false;
-		colMap.setTileProperties(2, FlxObject.ANY);
-		colMap.setTileProperties(4, FlxObject.UP);
+		colMap.setTileProperties(1, FlxObject.ANY);
+		colMap.setTileProperties(2, FlxObject.UP);
 
 		return colMap;
 	}

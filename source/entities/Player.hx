@@ -12,7 +12,7 @@ class Player extends Entity
     public var falling(default, default):Bool = false;
     public var jumping(default, default):Bool = false;
 
-    var speed(default,null):Float = 200;
+    var speed(default,null):Float = 100;
 
     public function new(x:Float, y:Float, flipped:Bool) {
         super(x, y, flipped, "player/player.png");
@@ -27,7 +27,7 @@ class Player extends Entity
             velocity.x = 0;
                 
     
-        if (!falling) {
+        //if (!falling) {
             if (FlxG.keys.anyPressed([UP, W]) && isTouching(FlxObject.FLOOR)){
                 velocity.y = -300;
                 jumping = true;
@@ -43,7 +43,8 @@ class Player extends Entity
                 velocity.x = speed;
                 
             }
-        } else {
+        //} else {
+        if (falling){
             acceleration.y = 1000;
         }
             
