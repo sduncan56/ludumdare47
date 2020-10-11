@@ -162,6 +162,10 @@ class PlayState extends FlxState
 			case "player":
 				player = new Player(entity.x, entity.y, false);
 				add(player);
+
+				//hack to deal with ogmo entity size/pos shoddiness.
+				while (!FlxG.collide(curLevel.walls, player))
+					player.y++;
 				camera.follow(player, FlxCameraFollowStyle.LOCKON, 1);
 			
 		        curLevel.startPos = new FlxPoint(entity.x, entity.y);	
@@ -183,13 +187,13 @@ class PlayState extends FlxState
 	}
 
 	private function collidePlayerWithMap(player:Player, map:FlxTilemap)
-	{	
-		if (!FlxG.collide(map, player))
+	{	FlxG.collide(map, player);
+
+		if (map.overlaps(player.floorSeeker)) 
 		{
-			player.falling = true;
-		} else {
-			player.falling = false;
-			player.jumping = false;
+			player.onFloor = true;
+		} else{
+			player.onFloor = false;
 		}
 	}
 
