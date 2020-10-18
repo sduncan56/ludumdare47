@@ -79,16 +79,16 @@ class Player extends Entity
     private function manageJump(timer:FlxTimer)
     {
         var downAccel = 300;
-        if (FlxG.keys.anyPressed([UP, W]))
+        if (FlxG.keys.anyPressed([UP, W]) && velocity.y < 0)
         {
             acceleration.y += downAccel;
 
         } else {
             acceleration.y += downAccel*2;
             if (timer.progress < 0.2)
-                velocity.y += 100;
-            if (timer.progress > 0.5)
-                acceleration.y += downAccel/5;
+                velocity.y += 50;
+            // if (timer.progress > 0.5)
+            //     acceleration.y += downAccel/5;
         }
 
         if (timer.loopsLeft == 1)

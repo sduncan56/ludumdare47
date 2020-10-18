@@ -211,8 +211,11 @@ class PlayState extends FlxState
 
 		}
 
-		FlxG.overlap(player, portals, enteredPortal);
-		FlxG.overlap(player, deathWall, hitDeathWall);
+		if (FlxG.overlap(player, portals, enteredPortal))
+			return;
+		if (FlxG.overlap(player, deathWall, hitDeathWall))
+			return;
+
 
 		gameCamera.velocity.x = curLevel.scrollSpeed;
 
